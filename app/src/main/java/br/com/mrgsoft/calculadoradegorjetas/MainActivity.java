@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
                 porcentagem = i;
                 textPorcentagem.setText( Math.round( porcentagem ) + " %" );
+                calcular();
 
             }
 
@@ -50,4 +52,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void calcular(){
+
+        String valorRecuperado = editValor.getText().toString();
+        if( valorRecuperado == null || valorRecuperado.equals("")){
+
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Digite um valor primeiro!",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+        }else {
+
+            //Converter string para double
+            double valorDigitado = Double.parseDouble( valorRecuperado );
+
+            //calcular a gorjeta
+            double gorjeta = valorDigitado * ( porcentagem / 100 );
+
+            //Exibir gorjeta e o total
+            textGorgeja.setText("R$ " + Math.round(gorjeta));
+            textTotal.setText("R$ " + Math.round((gorjeta + valorDigitado)));
+
+        }
+    }
 }
