@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
                 porcentagem = i;
+                textPorcentagem.setText( Math.round( porcentagem ) + " %" );
 
             }
 
@@ -48,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
